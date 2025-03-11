@@ -82,15 +82,15 @@ const Footer = () => {
                 <span>Support@jlespressoservice.com</span>
               </div>
               <div className="flex space-y-2 flex-col text-sm">
-              <div className="flex items-center text-sm">
-              <Phone size={16} className="mr-2" />
-              <span>+44 7903856712</span>
-              </div>
-              <div className="flex items-center text-sm">
-              <Phone size={16} className="mr-2" />
-              <span>+44 7860937505</span>
-              </div>
-              </div>
+      <a href="tel:+447903856712" className="flex items-center text-sm hover:text-blue-500 transition-colors">
+        <Phone size={16} className="mr-2" />
+        <span>+44 7903856712</span>
+      </a>
+      <a href="tel:+447860937505" className="flex items-center text-sm hover:text-blue-500 transition-colors">
+        <Phone size={16} className="mr-2" />
+        <span>+44 7860937505</span>
+      </a>
+    </div>
               <div className="flex items-center text-sm">
                 <MapPin size={16} className="mr-2" />
                 <span>Gretton Rd, <br />Corby NN17 3HN, United Kingdom</span>
