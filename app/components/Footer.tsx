@@ -57,18 +57,18 @@ const Footer = () => {
           {/* Quick Links */}
           <div className='flex flex-col space-y-2'>
             <h3 className="text-lg font-semibold mb-4 text-gray-900">Quick Links</h3>
-            <Link href="/coffee" className="cursor-pointer hover:text-black">Coffee</Link>
-        <Link href="/coffee-machines" className="cursor-pointer hover:text-black">Coffee Machines</Link>
-        <Link href="/services" className="cursor-pointer hover:text-black">Service</Link>
-        <Link href="/about-us" className="cursor-pointer hover:text-black">About Us</Link>
+            <Link href="/coffee" className="cursor-pointer hover:text-blue-500">Coffee</Link>
+        <Link href="/coffee-machines" className="cursor-pointer hover:text-blue-500">Coffee Machines</Link>
+        <Link href="/services" className="cursor-pointer hover:text-blue-500">Service</Link>
+        <Link href="/about-us" className="cursor-pointer hover:text-blue-500">About Us</Link>
 
   </div>
 
           {/* Resources */}
           <div className='flex flex-col space-y-2'>
             <h3 className="text-lg font-semibold mb-4 text-gray-900">Resources</h3>
-            <Link href="/contact-us" className="cursor-pointer hover:text-black">Contact</Link>
-            <Link href="/shop" className="cursor-pointer hover:text-black">Shop</Link>
+            <Link href="/contact-us" className="cursor-pointer hover:text-blue-500">Contact</Link>
+            <Link href="/shop" className="cursor-pointer hover:text-blue-500">Shop</Link>
              <Link href="#" className="text-sm hover:text-gray-900 transition-colors">Privacy Policy</Link>
               <Link href="#" className="text-sm hover:text-gray-900 transition-colors">Terms of Service</Link>
           </div>
@@ -77,10 +77,12 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4 text-gray-900">Contact</h3>
             <div className="space-y-2">
-              <div className="flex items-center text-sm">
-                <Mail size={16} className="mr-2" />
-                <span>Support@jlespressoservice.com</span>
-              </div>
+            <div className="flex items-center text-sm">
+  <a href="mailto:Support@jlespressoservice.com" className=" hover:text-blue-500 transition-colors">
+  <Mail size={16} className="mr-2" />
+    Support@jlespressoservice.com
+  </a>
+</div>
               <div className="flex space-y-2 flex-col text-sm">
       <a href="tel:+447903856712" className="flex items-center text-sm hover:text-blue-500 transition-colors">
         <Phone size={16} className="mr-2" />
