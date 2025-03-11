@@ -81,9 +81,15 @@ const Footer = () => {
                 <Mail size={16} className="mr-2" />
                 <span>Support@jlespressoservice.com</span>
               </div>
+              <div className="flex space-y-2 flex-col items-center text-sm">
               <div className="flex items-center text-sm">
-                <Phone size={16} className="mr-2" />
-                <span>+44 7903856712</span>
+              <Phone size={16} className="mr-2" />
+              <span>+44 7903856712</span>
+              </div>
+              <div className="flex items-center text-sm">
+              <Phone size={16} className="mr-2" />
+              <span>+44 7860937505</span>
+              </div>
               </div>
               <div className="flex items-center text-sm">
                 <MapPin size={16} className="mr-2" />
