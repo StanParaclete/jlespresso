@@ -320,7 +320,7 @@ const EspressoServices: React.FC = () => {
                 className="bg-white hover:bg-amber-100 text-amber-900 py-3 px-8 rounded-lg shadow-md transition duration-300 flex items-center justify-center gap-2"
               >
                 <Phone size={20} />
-                Call Now: +44 7903856712
+                Call Now: +44 7903856712/+44 7860937505
               </motion.a>
               <motion.button 
                 variants={fadeIn}

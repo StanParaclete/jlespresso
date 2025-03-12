@@ -49,7 +49,7 @@ const ContactUs = () => {
               title="Coffee Consultations"
               description="Looking to explore our coffee selection or need brewing advice? Our coffee experts are here to help."
               email="Support@jlespressoservice.com"
-              phone="+44 7903856712"
+              phone="+44 7903856712/+44 7860937505"
             />
             
             <ContactSection
