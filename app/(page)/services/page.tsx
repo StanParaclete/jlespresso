@@ -21,13 +21,13 @@ interface Category {
 const EspressoServices: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   
-  const services: Service[] = [
+   const services: Service[] = [
     {
       id: 1,
       name: "Emergency Repair Service",
       category: "emergency",
       description: "Quick response emergency repair service for all espresso machine brands. Available 7 days a week with same-day service for JL area.",
-      image: "https://i.pinimg.com/474x/3b/20/6c/3b206c0e9b333573fcb21615a86c8d73.jpg",
+      image: "/service/servicepic.jpg",
       features: [
         "Same-day service in JL",
         "All major brands covered",
@@ -53,7 +53,7 @@ const EspressoServices: React.FC = () => {
       name: "Descaling & Calibration",
       category: "maintenance",
       description: "Professional descaling service and precise calibration to ensure the perfect extraction every time.",
-      image: "https://i.pinimg.com/474x/da/11/c2/da11c23ac8571242cda6f3c68330f67a.jpg",
+      image: "/service/descaling.jpg",
       features: [
         "Professional grade descaling",
         "Pressure calibration",
@@ -66,7 +66,7 @@ const EspressoServices: React.FC = () => {
       name: "Parts Replacement",
       category: "repair",
       description: "Genuine replacement parts for all major espresso machine brands, professionally installed by our certified technicians.",
-      image: "https://i.pinimg.com/474x/55/eb/bb/55ebbb37a364f7cc65c8932b5e7ee24f.jpg",
+      image: "/service/replacement.jpg",
       features: [
         "Genuine manufacturer parts",
         "Professional installation",

@@ -73,21 +73,21 @@ const AboutUsPage = () => {
             title: "Premium Coffee Beans",
             description: "Ethically sourced beans from renowned coffee-growing regions.",
             features: ["Single-origin selections", "Small-batch roasting", "Ethical sourcing", "Expert curation"],
-            image: "https://i.pinimg.com/736x/3a/be/c7/3abec76cfcbb81afaa653476bdfe2604.jpg"
+            image: "/about/beans.jpg"
           },
           {
             icon: <Settings className="w-6 h-6 text-gray-700" />,
             title: "Coffee Machines",
             description: "State-of-the-art equipment and pre-owned machines.",
             features: ["Latest technology", "Energy efficient", "Professional grade", "Customizable options"],
-            image: "https://i.pinimg.com/736x/b0/81/c6/b081c6453ecd19064321145093fc1523.jpg"
+            image: "/about/machine.jpg"
           },
           {
             icon: <Users className="w-6 h-6 text-gray-700" />,
             title: "Service & Repairs",
             description: "Professional maintenance and repair services.",
             features: ["24/7 support", "Nationwide coverage", "Expert technicians", "Quick response"],
-            image: "https://i.pinimg.com/474x/9b/9d/17/9b9d17254d8856fdc1ca319c64db453e.jpg"
+            image: "/about/service.jpg"
           }
         ].map((service, index) => (
           <div key={index} className="bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm">
@@ -160,6 +160,7 @@ const AboutUsPage = () => {
                 <div>
                   <h5 className="font-medium mb-2">Contact</h5>
                   <p className="text-gray-600">+44 7903 856712</p>
+                  <p className="text-gray-600">+44 7860 937505</p>
                   <p className="text-gray-600">info@jlespressoservice.com</p>
                 </div>
               </div>
@@ -199,6 +200,7 @@ const AboutUsPage = () => {
             <div className="space-y-2 text-gray-600">
               <p>📍 London, UK</p>
               <p>📞 +44 7903 856712</p>
+              <p>📞 +44 7860 937505</p>
               <p>🌐 www.jlespresso.com</p>
             </div>
           </div>

@@ -73,28 +73,7 @@ const CoffeeHero = () => {
             </motion.span>
           </h1>
           
-          {/* Customer satisfaction */}
-          <motion.div 
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 1 }}
-            className="flex items-center gap-4 mt-8 justify-center md:justify-start"
-          >
-            <p className="text-gray-600 text-sm sm:text-base">500+ Satisfied Customers</p>
-            <div className="flex -space-x-2">
-              {[...Array(5)].map((_, i) => (
-                <motion.img
-                  key={i}
-                  initial={{ scale: 0, x: -20 }}
-                  animate={{ scale: 1, x: 0 }}
-                  transition={{ delay: 1.2 + i * 0.1 }}
-                  src={`https://randomuser.me/api/portraits/men/${i + 10}.jpg`}
-                  alt="customer"
-                  className="w-8 h-8 rounded-full border-2 border-white"
-                />
-              ))}
-            </div>
-          </motion.div>
+       
         </motion.div>
 
         {/* Right side images */}

@@ -54,6 +54,11 @@ const CoffeeInformationSystem = () => {
   const [favorites, setFavorites] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   
+  // New state for additional filters
+  const [selectedOrigins, setSelectedOrigins] = useState<string[]>([]);
+  const [selectedConditions, setSelectedConditions] = useState<string[]>([]);
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+  
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
@@ -62,15 +67,58 @@ const CoffeeInformationSystem = () => {
   const handleCategoryChange = (category: CategoryType) => {
     setActiveCategory(category);
     setCurrentPage(1); // Reset to first page when changing categories
+    
+    // Reset other filters when changing category
+    setSelectedOrigins([]);
+    setSelectedConditions([]);
+    setSelectedTypes([]);
   };
 
   // Toggle favorite status
-  const toggleFavorite = (id: string) => {
+  const toggleFavorite = (id: string, e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent triggering handleClick when clicking the favorite button
     if (favorites.includes(id)) {
       setFavorites(favorites.filter(favId => favId !== id));
     } else {
       setFavorites([...favorites, id]);
     }
+  };
+
+  // New handlers for filter checkboxes
+  const handleOriginFilter = (origin: string) => {
+    if (selectedOrigins.includes(origin)) {
+      setSelectedOrigins(selectedOrigins.filter(item => item !== origin));
+    } else {
+      setSelectedOrigins([...selectedOrigins, origin]);
+    }
+    setCurrentPage(1); // Reset to first page when changing filters
+  };
+
+  const handleConditionFilter = (condition: string) => {
+    if (selectedConditions.includes(condition)) {
+      setSelectedConditions(selectedConditions.filter(item => item !== condition));
+    } else {
+      setSelectedConditions([...selectedConditions, condition]);
+    }
+    setCurrentPage(1); // Reset to first page when changing filters
+  };
+
+  const handleTypeFilter = (type: string) => {
+    if (selectedTypes.includes(type)) {
+      setSelectedTypes(selectedTypes.filter(item => item !== type));
+    } else {
+      setSelectedTypes([...selectedTypes, type]);
+    }
+    setCurrentPage(1); // Reset to first page when changing filters
+  };
+
+  // Clear all filters
+  const clearAllFilters = () => {
+    setSearchTerm('');
+    setSelectedOrigins([]);
+    setSelectedConditions([]);
+    setSelectedTypes([]);
+    setCurrentPage(1);
   };
 
   // Define search fields for each category
@@ -85,9 +133,10 @@ const CoffeeInformationSystem = () => {
   const isCoffeeMachine = (item: CoffeeItem): item is CoffeeMachine => 'model' in item && 'brand' in item;
   const isMachinePart = (item: CoffeeItem): item is MachinePart => 'partName' in item && 'compatibility' in item;
 
-  // Filter items by search term
+  // Filter items by search term and other filters
   const filteredItems = (coffeeData[activeCategory] as CoffeeItem[])?.filter(item => {
-    return !searchTerm || searchFields[activeCategory].some(field => {
+    // Search term filtering
+    const matchesSearch = !searchTerm || searchFields[activeCategory].some(field => {
       let value = '';
       if (field === 'name' && isCoffeeBean(item)) value = item.name;
       else if (field === 'origin' && isCoffeeBean(item)) value = item.origin;
@@ -100,6 +149,26 @@ const CoffeeInformationSystem = () => {
       
       return value.toLowerCase().includes(searchTerm.toLowerCase());
     });
+    
+    // Additional filters based on category
+    let matchesFilter = true;
+    
+    // Origin filter for coffee beans
+    if (isCoffeeBean(item) && selectedOrigins.length > 0) {
+      matchesFilter = selectedOrigins.includes(item.origin);
+    }
+    
+    // Condition filter for coffee machines
+    if (isCoffeeMachine(item) && selectedConditions.length > 0) {
+      matchesFilter = selectedConditions.includes(item.condition);
+    }
+    
+    // Type filter for machine parts
+    if (isMachinePart(item) && selectedTypes.length > 0) {
+      matchesFilter = selectedTypes.includes(item.type);
+    }
+    
+    return matchesSearch && matchesFilter;
   }) || [];
   
   // Pagination logic
@@ -240,83 +309,106 @@ const CoffeeInformationSystem = () => {
       {/* Filters Sidebar and Products */}
       <div className="container mx-auto px-4 py-4">
         <div className="flex flex-wrap">
-          {/* Filters Sidebar */}
-          <div className="w-full md:w-1/4 pr-0 md:pr-6 mb-6 md:mb-0">
-            <div className="bg-white rounded shadow p-4">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="font-semibold">Filters</h3>
-                <button className="text-blue-600 text-sm">Clear All</button>
-              </div>
-              
-              <div className="mb-6">
-                <h4 className="font-medium mb-2">Category</h4>
-                <div className="space-y-2">
-                  {(['coffeeBeans', 'coffeeMachines', 'machineParts'] as CategoryType[]).map((category) => {
-                    const displayName = {
-                      coffeeBeans: 'Coffee Beans',
-                      coffeeMachines: 'Coffee Machines',
-                      machineParts: 'Machine Parts'
-                    }[category];
-                    
-                    return (
-                      <div key={category} className="flex items-center">
-                        <input
-                          type="checkbox"
-                          id={category}
-                          checked={activeCategory === category}
-                          onChange={() => handleCategoryChange(category)}
-                          className="mr-2"
-                        />
-                        <label htmlFor={category}>{displayName}</label>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-              
-              {activeCategory === 'coffeeBeans' && (
-                <div className="mb-6">
-                  <h4 className="font-medium mb-2">Origin</h4>
-                  <div className="space-y-2">
-                    {Array.from(new Set((coffeeData.coffeeBeans as CoffeeBean[]).map(bean => bean.origin))).map(origin => (
-                      <div key={origin} className="flex items-center">
-                        <input type="checkbox" id={`origin-${origin}`} className="mr-2" />
-                        <label htmlFor={`origin-${origin}`}>{origin}</label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-              
-              {activeCategory === 'coffeeMachines' && (
-                <div className="mb-6">
-                  <h4 className="font-medium mb-2">Condition</h4>
-                  <div className="space-y-2">
-                    {Array.from(new Set((coffeeData.coffeeMachines as CoffeeMachine[]).map(machine => machine.condition))).map(condition => (
-                      <div key={condition} className="flex items-center">
-                        <input type="checkbox" id={`condition-${condition}`} className="mr-2" />
-                        <label htmlFor={`condition-${condition}`}>{condition}</label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-              
-              {activeCategory === 'machineParts' && (
-                <div className="mb-6">
-                  <h4 className="font-medium mb-2">Type</h4>
-                  <div className="space-y-2">
-                    {Array.from(new Set((coffeeData.machineParts as MachinePart[]).map(part => part.type))).map(type => (
-                      <div key={type} className="flex items-center">
-                        <input type="checkbox" id={`type-${type}`} className="mr-2" />
-                        <label htmlFor={`type-${type}`}>{type}</label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+  {/* Filters Sidebar */}
+<div className="w-full md:w-1/4 pr-0 md:pr-6 mb-6 md:mb-0">
+  <div className="bg-white rounded shadow p-4">
+    <div className="flex justify-between items-center mb-4">
+      <h3 className="font-semibold">Filters</h3>
+      <button 
+        className="text-blue-600 text-sm"
+        onClick={clearAllFilters}
+      >
+        Clear All
+      </button>
+    </div>
+    
+    <div className="mb-6">
+      <h4 className="font-medium mb-2">Category</h4>
+      <div className="space-y-2">
+        {(['coffeeBeans', 'coffeeMachines', 'machineParts'] as CategoryType[]).map((category) => {
+          const displayName = {
+            coffeeBeans: 'Coffee Beans',
+            coffeeMachines: 'Coffee Machines',
+            machineParts: 'Machine Parts'
+          }[category];
+          
+          return (
+            <div key={category} className="flex items-center">
+              <input
+                type="checkbox"
+                id={category}
+                checked={activeCategory === category}
+                onChange={() => handleCategoryChange(category)}
+                className="mr-2"
+              />
+              <label htmlFor={category}>{displayName}</label>
             </div>
-          </div>
+          );
+        })}
+      </div>
+    </div>
+    
+    {activeCategory === 'coffeeBeans' && (
+      <div className="mb-6">
+        <h4 className="font-medium mb-2">Origin</h4>
+        <div className="space-y-2">
+          {Array.from(new Set((coffeeData.coffeeBeans as CoffeeBean[]).map(bean => bean.origin))).map(origin => (
+            <div key={origin} className="flex items-center">
+              <input 
+                type="checkbox" 
+                id={`origin-${origin}`} 
+                className="mr-2"
+                checked={selectedOrigins.includes(origin)}
+                onChange={() => handleOriginFilter(origin)}
+              />
+              <label htmlFor={`origin-${origin}`}>{origin}</label>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+    
+    {activeCategory === 'coffeeMachines' && (
+      <div className="mb-6">
+        <h4 className="font-medium mb-2">Condition</h4>
+        <div className="space-y-2">
+          {Array.from(new Set((coffeeData.coffeeMachines as CoffeeMachine[]).map(machine => machine.condition))).map(condition => (
+            <div key={condition} className="flex items-center">
+              <input 
+                type="checkbox" 
+                id={`condition-${condition}`} 
+                className="mr-2"
+                checked={selectedConditions.includes(condition)}
+                onChange={() => handleConditionFilter(condition)}
+              />
+              <label htmlFor={`condition-${condition}`}>{condition}</label>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+    
+    {activeCategory === 'machineParts' && (
+      <div className="mb-6">
+        <h4 className="font-medium mb-2">Type</h4>
+        <div className="space-y-2">
+          {Array.from(new Set((coffeeData.machineParts as MachinePart[]).map(part => part.type))).map(type => (
+            <div key={type} className="flex items-center">
+              <input 
+                type="checkbox" 
+                id={`type-${type}`} 
+                className="mr-2"
+                checked={selectedTypes.includes(type)}
+                onChange={() => handleTypeFilter(type)}
+              />
+              <label htmlFor={`type-${type}`}>{type}</label>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+</div>
           
           {/* Products Grid */}
           <div className="w-full md:w-3/4">
@@ -366,13 +458,13 @@ const CoffeeInformationSystem = () => {
                     
                       </div>
                       
-                      {/* Favorite button */}
-                      <button 
-                        className="absolute top-2 right-2 bg-white p-2 rounded-full"
-                        onClick={() => toggleFavorite(item.id)}
-                      >
-                        {favorites.includes(item.id) ? '❤️' : '🤍'}
-                      </button>
+                 {/* Favorite button */}
+<button 
+  className="absolute top-2 right-2 bg-white p-2 rounded-full"
+  onClick={(e) => toggleFavorite(item.id, e)}
+>
+  {favorites.includes(item.id) ? '❤️' : '🤍'}
+</button>
                     </div>
                     
                     {/* Additional details shown below the image/overlay */}

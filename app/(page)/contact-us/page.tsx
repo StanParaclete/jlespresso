@@ -55,7 +55,7 @@ const ContactUs = () => {
             <ContactSection
               icon={<Phone size={24} />}
               title="Wholesale Inquiries"
-              description="Interested in serving our coffee at your establishment? Let's discuss partnership opportunities."
+              description="Interested in purchasing our Premium Coffee Beans | New & Pre-Owned Machines | Expert Servicing & Repairs. Let’s discuss. "
               email="Support@jlespressoservice.com"
             />
             
