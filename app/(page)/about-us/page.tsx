@@ -193,7 +193,7 @@ const AboutUsPage = () => {
         <img 
           src="/training.jpg" 
           alt="Training & Education" 
-          className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-500"
         />
       </div>
       <div className="p-8">
