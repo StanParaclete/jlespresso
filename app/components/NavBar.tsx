@@ -1,10 +1,12 @@
 'use client';
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import MenuSheet from "./MenuSheet";
 import Marquee from "react-fast-marquee";
 
 const Navbar = () => {
+  const pathname = usePathname();
   const movingWords = [
     "Powering Your Perfect Coffee Experience",
   ];
@@ -35,7 +37,9 @@ const Navbar = () => {
           <div key={index}>
             <Link 
               href={link.href} 
-              className="cursor-pointer hover:text-black transition-colors duration-300"
+              className={`cursor-pointer hover:text-amber-600 transition-colors duration-300 ${
+                pathname === link.href ? "text-amber-700 font-bold border-b-2 border-amber-700" : ""
+              }`}
             >
               {link.text}
             </Link>
