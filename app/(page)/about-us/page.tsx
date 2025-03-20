@@ -55,11 +55,11 @@ const AboutUsPage = () => {
         <img 
           src="/founders.jpg" 
           alt="J.L Espresso Founders" 
-          className="w-full h-[80vh] max-lg:h-96 rounded-[2pc] object-fill object-top" 
+          className="w-full h-[80vh] max-lg:h-96 rounded-[2pc] object-cover object-top" 
         />
       </div>
       <div className="p-6 flex flex-col justify-center">
-        <h4 className="font-serif text-xl mb-2">John K Stephens & Lydia Parker</h4>
+        <h4 className="font-serif text-xl mb-2">John & Lydia </h4>
         <p className="text-sm text-gray-600 mb-4">Founder & CEO</p>
         <div className="text-gray-700 space-y-4">
           <p>&quot;Great coffee isn&apos;t just a drink—it&apos;s a moment of connection. That belief sparked J.L Espresso in 2010, tinkering with machines in my garage while chasing the perfect brew. Today, we&apos;re still driven by that same curiosity: blending craftsmanship with innovation to transform how the world experiences coffee.</p>
