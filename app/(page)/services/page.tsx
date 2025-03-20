@@ -21,7 +21,7 @@ interface Category {
 const EspressoServices: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   
-   const services: Service[] = [
+  const services: Service[] = [
     {
       id: 1,
       name: "Emergency Repair Service",
@@ -73,6 +73,19 @@ const EspressoServices: React.FC = () => {
         "Full testing post-repair",
         "Extended part warranty"
       ]
+    },
+    {
+      id: 5,
+      name: "Training & Education",
+      category: "training",
+      description: "We empower coffee lovers and professionals through knowledge-sharing sessions and hands-on workshops.",
+      image: "/training.jpg",
+      features: [
+        "Barista Masterclasses",
+        "Machine Maintenance Workshops",
+        "Sustainability Programs",
+        "Certification Courses"
+      ]
     }
   ];
   
@@ -80,7 +93,8 @@ const EspressoServices: React.FC = () => {
     { id: 'all', name: 'All Services' },
     { id: 'emergency', name: 'Emergency Repairs' },
     { id: 'maintenance', name: 'Maintenance' },
-    { id: 'repair', name: 'Repairs & Parts' }
+    { id: 'repair', name: 'Repairs & Parts' },
+    { id: 'training', name: 'Training & Education' }
   ];
   
   const filteredServices = activeCategory === 'all' 

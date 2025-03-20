@@ -46,6 +46,37 @@ const AboutUsPage = () => {
         ))}
       </motion.div>
 
+     {/* Founders Section */}
+<motion.div className="mb-12" variants={fadeIn}>
+  <h3 className="font-serif text-2xl mb-6">Meet Our Founders</h3>
+  <div className="bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+      <div className="h-full md:h-full flex items-center justify-center">
+        <img 
+          src="/founders.jpg" 
+          alt="J.L Espresso Founders" 
+          className="w-full h-full object-cover object-center" 
+        />
+      </div>
+      <div className="p-6 flex flex-col justify-center">
+        <h4 className="font-serif text-xl mb-2">John K Stephens & Lydia Parker</h4>
+        <p className="text-sm text-gray-600 mb-4">Founder & CEO</p>
+        <div className="text-gray-700 space-y-4">
+          <p>&quot;Great coffee isn&apos;t just a drink—it&apos;s a moment of connection. That belief sparked J.L Espresso in 2010, tinkering with machines in my garage while chasing the perfect brew. Today, we&apos;re still driven by that same curiosity: blending craftsmanship with innovation to transform how the world experiences coffee.</p>
+          <p>Every bean we source, every machine we build or refurbish, and every barista we train is rooted in respect—for the craft, for the planet, and for the people who grow, brew, and savor what we create.</p>
+          <p>This isn&apos;t just a business; it&apos;s a lifelong pursuit of excellence. Whether you&apos;re a home brewer, a café owner, or simply someone who loves that first sip of a flawlessly pulled shot, we&apos;re here to empower your journey.</p>
+          <p>Let&apos;s keep brewing better, together.&quot;</p>
+        </div>
+        <div className="mt-6 text-right">
+          <p className="text-lg font-serif text-gray-800">Powering</p>
+          <p className="text-lg font-serif text-gray-800">Perfect Coffee</p>
+          <p className="text-lg font-serif text-gray-800">Experience</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</motion.div>
+
       {/* Our Story Section */}
       <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12" variants={fadeIn}>
         <motion.div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm" whileHover={{ scale: 1.02 }}>
@@ -61,74 +92,142 @@ const AboutUsPage = () => {
           </div>
         </motion.div>
         <motion.div className="rounded-lg overflow-hidden h-64" whileHover={{ scale: 1.02 }}>
-          <img src="/jlexpresso/busRight.jpg" alt="bus" className="w-full h-full object-cover" />
+          <img src="/jlexpresso/busRight.jpg" alt="bus"
+           className="w-full h-full object-cover" />
         </motion.div>
       </motion.div>
-      {/* Services Section */}
-      <h3 className="font-serif text-2xl mb-6">Our Offerings</h3>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        {[
-          {
-            icon: <Coffee className="w-6 h-6 text-gray-700" />,
-            title: "Premium Coffee Beans",
-            description: "Ethically sourced beans from renowned coffee-growing regions.",
-            features: ["Single-origin selections", "Small-batch roasting", "Ethical sourcing", "Expert curation"],
-            image: "/about/beans.jpg"
-          },
-          {
-            icon: <Settings className="w-6 h-6 text-gray-700" />,
-            title: "Coffee Machines",
-            description: "State-of-the-art equipment and pre-owned machines.",
-            features: ["Latest technology", "Energy efficient", "Professional grade", "Customizable options"],
-            image: "/about/machine.jpg"
-          },
-          {
-            icon: <Users className="w-6 h-6 text-gray-700" />,
-            title: "Service & Repairs",
-            description: "Professional maintenance and repair services.",
-            features: ["24/7 support", "Nationwide coverage", "Expert technicians", "Quick response"],
-            image: "/about/service.jpg"
-          }
-        ].map((service, index) => (
-          <div key={index} className="bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm">
-            <img 
-              src={service.image} 
-              alt={service.title} 
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-6">
-              <div className="flex items-start gap-4">
-                {service.icon}
-                <div>
-                  <h3 className="font-serif text-xl mb-2">{service.title}</h3>
-                  <p className="text-gray-600 mb-4">{service.description}</p>
-                  <ul className="grid grid-cols-2 gap-2">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-sm text-gray-600">
-                        <Leaf className="w-4 h-4 mr-2 text-gray-400" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+     {/* Services Section */}
+<div className="mb-16">
+  <h2 className="font-serif text-3xl mb-8 text-center">Our Offerings</h2>
+  
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+    {/* Premium Coffee Beans */}
+    <div className="bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300">
+      <div className="h-64 overflow-hidden">
+        <img 
+          src="/about/beans.jpg" 
+          alt="Premium Coffee Beans" 
+          className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+        />
       </div>
+      <div className="p-8">
+        <div className="flex items-start gap-4">
+          <Coffee className="w-8 h-8 text-gray-700 mt-1" />
+          <div>
+            <h3 className="font-serif text-2xl mb-3">Premium Coffee Beans</h3>
+            <p className="text-gray-600 mb-5">Ethically sourced beans from renowned coffee-growing regions.</p>
+            <ul className="grid grid-cols-2 gap-y-3 gap-x-4">
+              {["Single-origin selections", "Small-batch roasting", "Ethical sourcing", "Expert curation"].map((feature, idx) => (
+                <li key={idx} className="flex items-center text-gray-600">
+                  <Leaf className="w-4 h-4 mr-2 text-emerald-500" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    {/* Coffee Machines */}
+    <div className="bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300">
+      <div className="h-64 overflow-hidden">
+        <img 
+          src="/about/machine.jpg" 
+          alt="Coffee Machines" 
+          className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+        />
+      </div>
+      <div className="p-8">
+        <div className="flex items-start gap-4">
+          <Settings className="w-8 h-8 text-gray-700 mt-1" />
+          <div>
+            <h3 className="font-serif text-2xl mb-3">Coffee Machines</h3>
+            <p className="text-gray-600 mb-5">State-of-the-art equipment and pre-owned machines.</p>
+            <ul className="grid grid-cols-2 gap-y-3 gap-x-4">
+              {["Latest technology", "Energy efficient", "Professional grade", "Customizable options"].map((feature, idx) => (
+                <li key={idx} className="flex items-center text-gray-600">
+                  <Leaf className="w-4 h-4 mr-2 text-emerald-500" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    {/* Service & Repairs */}
+    <div className="bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300">
+      <div className="h-64 overflow-hidden">
+        <img 
+          src="/about/service.jpg" 
+          alt="Service & Repairs" 
+          className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+        />
+      </div>
+      <div className="p-8">
+        <div className="flex items-start gap-4">
+          <Users className="w-8 h-8 text-gray-700 mt-1" />
+          <div>
+            <h3 className="font-serif text-2xl mb-3">Service & Repairs</h3>
+            <p className="text-gray-600 mb-5">Professional maintenance and repair services.</p>
+            <ul className="grid grid-cols-2 gap-y-3 gap-x-4">
+              {["24/7 support", "Nationwide coverage", "Expert technicians", "Quick response"].map((feature, idx) => (
+                <li key={idx} className="flex items-center text-gray-600">
+                  <Leaf className="w-4 h-4 mr-2 text-emerald-500" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Training & Education */}
+    <div className="bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300">
+      <div className="h-64 overflow-hidden">
+        <img 
+          src="/training.jpg" 
+          alt="Training & Education" 
+          className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+        />
+      </div>
+      <div className="p-8">
+        <div className="flex items-start gap-4">
+          <Users className="w-8 h-8 text-gray-700 mt-1" />
+          <div>
+            <h3 className="font-serif text-2xl mb-3">Training & Education</h3>
+            <p className="text-gray-600 mb-5">We empower coffee lovers and professionals through knowledge-sharing.</p>
+            <ul className="grid grid-cols-2 gap-y-3 gap-x-4">
+              {["Barista Masterclasses", "Machine Maintenance Workshops", "Sustainability Programs", "Certification Courses"].map((feature, idx) => (
+                <li key={idx} className="flex items-center text-gray-600">
+                  <Leaf className="w-4 h-4 mr-2 text-emerald-500" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
       {/* Shop Section */}
       <div className="mb-12">
         <h3 className="font-serif text-2xl mb-6">Visit Our Shop</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Map */}
           <div className="bg-gray-100 rounded-lg overflow-hidden h-96">
-  <img 
-    src="/map.png" 
-    alt="Map location" 
-    className="w-full h-full object-cover"
-  />
-</div>
+            <img 
+              src="/map.png" 
+              alt="Map location" 
+              className="w-full h-full object-cover"
+            />
+          </div>
 
           {/* Shop Information */}
           <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
@@ -139,7 +238,7 @@ const AboutUsPage = () => {
                 <MapPin className="w-6 h-6 text-gray-700" />
                 <div>
                   <h5 className="font-medium mb-2">Location</h5>
-                  <p className="text-gray-600">  <span>Gretton Rd, <br />Corby NN17 3HN, United Kingdom</span></p>
+                  <p className="text-gray-600">  <span>Gretton Rd, <br />Corby NN17 3HN, United Kingdom</span></p>
                 </div>
               </div>
 
@@ -201,7 +300,7 @@ const AboutUsPage = () => {
               <p>📍 London, UK</p>
               <p>📞 +44 7903 856712</p>
               <p>📞 +44 7860 937505</p>
-              <p>🌐 www.jlespresso.com</p>
+              <p>🌐 www.jlespressoservice.com</p>
             </div>
           </div>
         </div>
