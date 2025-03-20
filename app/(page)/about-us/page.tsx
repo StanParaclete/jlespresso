@@ -55,7 +55,7 @@ const AboutUsPage = () => {
         <img 
           src="/founders.jpg" 
           alt="J.L Espresso Founders" 
-          className="w-full h-[80vh] max-lg:h-96 rounded-[2pc] object-fill object-top" 
+          className="w-full h-[80vh] max-lg:h-96 rounded-[2pc] object-cover object-top" 
         />
       </div>
       <div className="p-6 flex flex-col justify-center">
